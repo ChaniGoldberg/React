@@ -1,36 +1,37 @@
-import {useSelector,useDispatch} from 'react-redux';
-import { add_task,remove_task } from '../redux/actions/actions';
-
-const ViewTasks=()=>
-{
-    const tasks=useSelector((state)=>state.tasks);
-    const dispatch=useDispatch();
-    return(
+import { useSelector, useDispatch } from 'react-redux';
+import { add_task, remove_task } from '../redux/actions/actions';
+import React, { useState } from 'react';
+import './styles.css';
+const ViewTasks = () => {
+    const [name, setName] = useState("");
+    const [prayority, setPrayority] = useState();
+    const tasks = useSelector((state) => state.TaskReducer.tasks);
+    const dispatch = useDispatch();
+    return (
         <>
-        {tasks.map((task,index)=>(
-            <div>
-            <p>{task.name}</p>
-            <p>{task.prayority}</p>
-            <p>{task.id}</p>
-            <button onClick={()=>dispatch(remove_task(task.id))}>to remove task...</button>
-            </div>
-        ))}
+            <h1>hellow to your tasks list😂😍😊</h1>
+            {tasks.map((task, index) => (
+                <div>
+                    <p>num task: {index}</p>
+                    <p>task name: {task.name}</p>
+                    <p >task prayority: {task.prayority}</p>
+                    <button onClick={() => dispatch(remove_task(task))}>to remove task...</button>
+                </div>
+            ))}
 
-        
-        {
-        <>
-        <form>
-        <label>id:</label>
-          <input id='id'></input>
-          <label>name:</label>
-          <input id='name'></input>
-          <label>prayority:</label>
-          <input id='prayority'></input>
-        </form>
 
-        <button onClick={()=>dispatch(add_task({name:document.getElementById("name").value,prayority:document.getElementById("prayority").value,id:document.getElementById("id").value}))}>add task...</button>
-        </>
-        }
+            {
+                <>
+                    <form>
+                        <label>name:</label>
+                        <input id='name' onChange={(e) => setName(e.target.value)}></input>
+                        <label>prayority:</label>
+                        <input type='number' id='prayority' onChange={(e) => setPrayority(e.target.value)}></input>
+                    </form>
+
+                    <button onClick={() => dispatch(add_task({ name: name, prayority: prayority }))}>add task...</button>
+                </>
+            }
         </>
     );
 }
