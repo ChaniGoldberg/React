@@ -117,9 +117,10 @@ body {
     outline: none;
     
     }
-    p{
-        size: 20vh;
-    }
-    h2{
-        border: #f01023;
-    }
+   .numTask{
+    color: #f01023;
+   }
+   .task{
+    border: #f01023;
+    width: 40%;
+   }

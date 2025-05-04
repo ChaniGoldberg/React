@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { add_task, remove_task } from '../redux/actions/actions';
+import { addTask, removeTask } from '../redux/actions/actions';
 import React, { useState } from 'react';
 import './styles.css';
 const ViewTasks = () => {
@@ -11,11 +11,11 @@ const ViewTasks = () => {
         <>
             <h1>hellow to your tasks list😂😍😊</h1>
             {tasks.map((task, index) => (
-                <div>
-                    <p>num task: {index}</p>
+                <div id='task'>
+                    <p id="numTask">num task: {index+1}</p>
                     <p>task name: {task.name}</p>
                     <p >task prayority: {task.prayority}</p>
-                    <button onClick={() => dispatch(remove_task(task))}>to remove task...</button>
+                    <button onClick={() => dispatch(removeTask(task))}>to remove task...</button>
                 </div>
             ))}
 
@@ -29,7 +29,7 @@ const ViewTasks = () => {
                         <input type='number' id='prayority' onChange={(e) => setPrayority(e.target.value)}></input>
                     </form>
 
-                    <button onClick={() => dispatch(add_task({ name: name, prayority: prayority }))}>add task...</button>
+                    <button onClick={() => {dispatch(addTask({ name: name, prayority: prayority }))}}>add task...</button>
                 </>
             }
         </>

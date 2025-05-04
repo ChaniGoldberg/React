@@ -9,9 +9,9 @@ export const RecyclebinReducer = (state = initialState, action) => {
         case REMOVE_TASK:
                 return { ...state, deletedTasks: [...state.deletedTasks,action.payload] };
         case RESTOR_TASK:
-            return{ ...state, deletedTasks: state.deletedTasks.filter((t) => action.payload !==t)}
+            return{ ...state, deletedTasks: state.deletedTasks.filter((t) => action.payload !==t)};
         case REMOVE_FOREVER:
-            return{...state, deletedTasks: state.deletedTasks.filter((t) => action.payload !==t)}
+            return{...state, deletedTasks: state.deletedTasks.filter((t) => action.payload !==t)};
             default:
             return state;
     }
